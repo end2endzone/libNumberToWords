@@ -9,9 +9,9 @@ The test files were generated from Microsoft Word 2010 using the French language
 
 To convert a number to words, enter the following commands:
 
-1) Hit `CTRL+F9` key. The following field will be added to the document `{ }`.
-2) Enter the following command within the brackets: `=<number> \*CardText` replacing `<number>` by the actual integer value to convert. For examples, to convert the number 34 to words, enter `=34 \*CardText`.
-3) Hit `CTRL+F9` key again to convert the code to actual text.
+1) Hit `CTRL+F9` key. This will add a custom field code `{ }` to the document.
+2) Enter within the brackets: `=<number> \*CardText` replacing `<number>` by the actual integer value to convert. For examples, to convert the number 34 to words, enter `=34 \*CardText`.
+3) Hit `F9` key to 'Update field code' and to convert the code to actual text.
 
 
 # Source code
