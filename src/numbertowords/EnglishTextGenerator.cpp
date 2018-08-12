@@ -26,6 +26,18 @@
 
 namespace NumberToWords
 {
+  static const std::string gTeens[] = {
+    "one", "two", "three", "four", "five",
+    "six", "seven", "eight", "nine", "ten",
+    "eleven", "twelve", "thirteen", "fourteen",
+    "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+  };
+  static const std::string gTens[] = {
+    "twenty", "thirty",
+    "forty", "fifty",
+    "sixty", "seventy", 
+    "eighty", "ninety"
+  };
 
   EnglishTextGenerator::EnglishTextGenerator()
   {
@@ -40,62 +52,49 @@ namespace NumberToWords
     if ( i == 0 )
       return getDigitName(i); 
     else if ( i < 0 )
-      return "Minus " + getNumberName(-i); //do not call level fonction to allow "Minus Zero" if user 
+      return "minus " + getNumberName(-i); //do not call level fonction to allow "Minus Zero" if user 
     return getNumberName(i, 0);
   }
 
   std::string EnglishTextGenerator::getNumberName(const int64_t & i, int iLevel)
   {
-    static const std::string teens[] = {
-      "One", "Two", "Three", "Four", "Five",
-      "Six", "Seven", "Eight", "Nine", "Ten",
-      "Eleven", "Twelve", "Thirteen", "Fourteen",
-      "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
-    };
-    static const std::string tens[] = {
-      "Twenty", "Thirty",
-      "Forty", "Fifty",
-      "Sixty", "Seventy", 
-      "Eighty", "Ninety"
-    };
-
     if ( i == 0 )
       return "";
     else if ( i <= 19 )
-      return teens[i-1] + " ";
+      return gTeens[i-1];
     else if ( i <= 99 )
-      return tens[i / 10 - 2] + " " + getNumberName(i % 10);
+      return gTens[i / 10 - 2] + "-" + getNumberName(i % 10);
     else if ( i <= 199 )
-      return "One Hundred " + getNumberName(i % 100);
+      return "one hundred " + getNumberName(i % 100);
     else if ( i <= 999 )
-      return getNumberName(i / 100) + "Hundreds " + getNumberName(i % 100);
+      return getNumberName(i / 100) + " hundred " + getNumberName(i % 100);
     else if ( i <= 1999 )
-      return "One Thousand " + getNumberName(i % 1000);
+      return "one thousand " + getNumberName(i % 1000);
     else if ( i <= 999999 )
-      return getNumberName(i / 1000) + "Thousands " + getNumberName(i % 1000);
+      return getNumberName(i / 1000) + " thousand " + getNumberName(i % 1000);
     else if ( i <= 1999999 )
-      return "One Million " + getNumberName(i % 1000000);
+      return "one million " + getNumberName(i % 1000000);
     else if ( i <= 999999999)
-      return getNumberName(i / 1000000) + "Millions " + getNumberName(i % 1000000);
+      return getNumberName(i / 1000000) + " million " + getNumberName(i % 1000000);
     else if ( i <= 1999999999 )
-      return "One Billion " + getNumberName(i % 1000000000);
+      return "one billion " + getNumberName(i % 1000000000);
     else 
-      return getNumberName(i / 1000000000) + "Billions " + getNumberName(i % 1000000000);
+      return getNumberName(i / 1000000000) + " billion " + getNumberName(i % 1000000000);
   }
 
   std::string EnglishTextGenerator::getDigitName(const int64_t & i)
   {
     static const std::string digits[] = {
-      "Zero",  
-      "One",
-      "Two",
-      "Three",
-      "Four",
-      "Five",
-      "Six",
-      "Seven",
-      "Eight",
-      "Nine"  
+      "zero",  
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine"  
     };
     if (i >= 0 && i <= 9)
       return digits[i];

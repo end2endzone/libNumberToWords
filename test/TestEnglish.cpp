@@ -44,8 +44,13 @@ namespace arduino { namespace test
   TEST(TestEnglish, testBasic)
   {
     EnglishTextGenerator g;
-    std::string s = g.getNumberName(0);
-    int a = 0;
+
+    ASSERT_EQ("three"                                                      , g.getNumberName(3     ));
+    ASSERT_EQ("thirty-four"                                                , g.getNumberName(34)   );
+    ASSERT_EQ("three hundred forty-five"                                   , g.getNumberName(345   ));
+    ASSERT_EQ("three thousand four hundred fifty-six"                      , g.getNumberName(3456  ));
+    ASSERT_EQ("thirty-four thousand five hundred sixty-seven"              , g.getNumberName(34567 ));
+    ASSERT_EQ("three hundred forty-five thousand six hundred seventy-eight", g.getNumberName(345678));
   }
   //--------------------------------------------------------------------------------------------------
   TEST(TestEnglish, testDigits)
@@ -53,16 +58,16 @@ namespace arduino { namespace test
     EnglishTextGenerator g;
 
     ASSERT_EQ("",       g.getDigitName(-1));
-    ASSERT_EQ("Zero",   g.getDigitName(0));
-    ASSERT_EQ("One",    g.getDigitName(1));
-    ASSERT_EQ("Two",    g.getDigitName(2));
-    ASSERT_EQ("Three",  g.getDigitName(3));
-    ASSERT_EQ("Four",   g.getDigitName(4));
-    ASSERT_EQ("Five",   g.getDigitName(5));
-    ASSERT_EQ("Six",    g.getDigitName(6));
-    ASSERT_EQ("Seven",  g.getDigitName(7));
-    ASSERT_EQ("Eight", g.getDigitName(8));
-    ASSERT_EQ("Nine",   g.getDigitName(9));
+    ASSERT_EQ("zero",   g.getDigitName(0));
+    ASSERT_EQ("one",    g.getDigitName(1));
+    ASSERT_EQ("two",    g.getDigitName(2));
+    ASSERT_EQ("three",  g.getDigitName(3));
+    ASSERT_EQ("four",   g.getDigitName(4));
+    ASSERT_EQ("five",   g.getDigitName(5));
+    ASSERT_EQ("six",    g.getDigitName(6));
+    ASSERT_EQ("seven",  g.getDigitName(7));
+    ASSERT_EQ("eight", g.getDigitName(8));
+    ASSERT_EQ("nine",   g.getDigitName(9));
     ASSERT_EQ("",       g.getDigitName(10));
   }
   //--------------------------------------------------------------------------------------------------
