@@ -22,69 +22,32 @@
  * SOFTWARE.
  *********************************************************************************/
 
-#include "numbertowords/numbertowords.h"
-#include <cstdio>
+#ifndef FRENCHTEXTGENERATOR_H
+#define FRENCHTEXTGENERATOR_H
 
+#ifdef NUMBERTOWORDS_BUILT_AS_SHARED
+#include "export.h"
+#endif
+
+#ifndef NUMBERTOWORDS_EXPORT
+#define NUMBERTOWORDS_EXPORT
+#endif
+
+#include "ITextGenerator.h"
 namespace NumberToWords
 {
 
-  ITextGenerator::ITextGenerator()
+  class NUMBERTOWORDS_EXPORT FrenchTextGenerator : public virtual ITextGenerator
   {
-  }
+  public:
+    FrenchTextGenerator();
+    virtual ~FrenchTextGenerator();
 
-  ITextGenerator::~ITextGenerator()
-  {
-  }
-
-  FrenchTextGenerator::FrenchTextGenerator()
-  {
-  }
-
-  FrenchTextGenerator::~FrenchTextGenerator()
-  {
-  }
-
-  std::string FrenchTextGenerator::getNumberName(const int64_t & i)
-  {
-    return std::string();
-  }
-
-  std::string FrenchTextGenerator::getDigitName(const int64_t & i)
-  {
-    static const std::string digits[] = {
-      "zéro",  
-      "un",    
-      "deux",  
-      "trois", 
-      "quatre",
-      "cinq",  
-      "six",   
-      "sept",  
-      "huit",  
-      "neuf"   
-    };
-    if (i >= 0 && i <= 9)
-      return digits[i];
-    return "";
-  }
-
-  std::string FrenchTextGenerator::getTeenName(const int64_t & i)
-  {
-    static const std::string teens[] = {
-      "",
-      "dix"
-      "vingt",
-      "trente",
-      "quarantre",
-      "cinquante",
-      "soixante",
-      "soixante dix",
-      "quatre vingt",
-      "quatre vingt dix"
-    };
-    if (i >= 1 && i <= 9)
-      return teens[i];
-    return "";
-  }
+    virtual std::string getNumberName(const int64_t & i);
+    virtual std::string getDigitName(const int64_t & i);
+    virtual std::string getTeenName(const int64_t & i);
+  };
 
 }; //namespace NumberToWords
+
+#endif //FRENCHTEXTGENERATOR_H

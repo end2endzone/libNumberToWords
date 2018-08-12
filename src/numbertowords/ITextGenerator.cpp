@@ -22,21 +22,17 @@
  * SOFTWARE.
  *********************************************************************************/
 
-#ifndef NUMBERTOWORDS_H
-#define NUMBERTOWORDS_H
+#include "numbertowords/ITextGenerator.h"
 
-#include "config.h"
-#include "version.h"
+namespace NumberToWords
+{
 
-#ifdef NUMBERTOWORDS_BUILT_AS_SHARED
-#include "export.h"
-#endif
+  ITextGenerator::ITextGenerator()
+  {
+  }
 
-#ifndef NUMBERTOWORDS_EXPORT
-#define NUMBERTOWORDS_EXPORT
-#endif
+  ITextGenerator::~ITextGenerator()
+  {
+  }
 
-#include "ITextGenerator.h"
-#include "FrenchTextGenerator.h"
-
-#endif //NUMBERTOWORDS_H
+}; //namespace NumberToWords

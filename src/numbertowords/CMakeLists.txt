@@ -1,5 +1,7 @@
 set(NUMBERTOWORDS_HEADER_FILES ""
   ${NUMBERTOWORDS_INCLUDE_DIR}/numbertowords/numbertowords.h
+  ${NUMBERTOWORDS_INCLUDE_DIR}/numbertowords/ITextGenerator.h
+  ${NUMBERTOWORDS_INCLUDE_DIR}/numbertowords/FrenchTextGenerator.h
 )
 
 add_library(numbertowords STATIC
@@ -7,7 +9,8 @@ add_library(numbertowords STATIC
   ${NUMBERTOWORDS_EXPORT_HEADER}
   ${NUMBERTOWORDS_VERSION_HEADER}
   ${NUMBERTOWORDS_CONFIG_HEADER}
-  numbertowords.cpp
+  ITextGenerator.cpp
+  FrenchTextGenerator.cpp
 )
 
 # Force CMAKE_DEBUG_POSTFIX for executables

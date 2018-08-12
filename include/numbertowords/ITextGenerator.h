@@ -22,11 +22,8 @@
  * SOFTWARE.
  *********************************************************************************/
 
-#ifndef NUMBERTOWORDS_H
-#define NUMBERTOWORDS_H
-
-#include "config.h"
-#include "version.h"
+#ifndef ITEXTGENERATOR_H
+#define ITEXTGENERATOR_H
 
 #ifdef NUMBERTOWORDS_BUILT_AS_SHARED
 #include "export.h"
@@ -36,7 +33,23 @@
 #define NUMBERTOWORDS_EXPORT
 #endif
 
-#include "ITextGenerator.h"
-#include "FrenchTextGenerator.h"
+#include <stdint.h>   //for uintxx_t, intxx_t
+#include <string>     //for std::string
 
-#endif //NUMBERTOWORDS_H
+namespace NumberToWords
+{
+
+  class NUMBERTOWORDS_EXPORT ITextGenerator
+  {
+  public:
+    ITextGenerator();
+    virtual ~ITextGenerator();
+
+    virtual std::string getNumberName(const int64_t & i) = 0;
+    virtual std::string getDigitName(const int64_t & i) = 0;
+    virtual std::string getTeenName(const int64_t & i) = 0;
+  };
+
+}; //namespace NumberToWords
+
+#endif //ITEXTGENERATOR_H
