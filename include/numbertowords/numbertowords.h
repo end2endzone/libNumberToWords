@@ -33,11 +33,37 @@
 #endif
 
 #include <stdint.h>   //for uintxx_t, intxx_t
+#include <string>     //for std::string
 
 #ifndef NUMBERTOWORDS_EXPORT
 #define NUMBERTOWORDS_EXPORT
 #endif
 
-NUMBERTOWORDS_EXPORT void sayHello();
+namespace NumberToWords
+{
+
+  class NUMBERTOWORDS_EXPORT ITextGenerator
+  {
+  public:
+    ITextGenerator();
+    virtual ~ITextGenerator();
+
+    virtual std::string getNumberName(const int64_t & i) = 0;
+    virtual std::string getDigitName(const int64_t & i) = 0;
+    virtual std::string getTeenName(const int64_t & i) = 0;
+  };
+
+  class NUMBERTOWORDS_EXPORT FrenchTextGenerator : public virtual ITextGenerator
+  {
+  public:
+    FrenchTextGenerator();
+    virtual ~FrenchTextGenerator();
+
+    virtual std::string getNumberName(const int64_t & i);
+    virtual std::string getDigitName(const int64_t & i);
+    virtual std::string getTeenName(const int64_t & i);
+  };
+
+}; //namespace NumberToWords
 
 #endif //NUMBERTOWORDS_H

@@ -26,6 +26,8 @@
 #include "numbertowords\numbertowords.h"
 #include <string>
 
+using namespace NumberToWords;
+
 namespace arduino { namespace test
 {
   //using namespace testarduino;
@@ -39,9 +41,29 @@ namespace arduino { namespace test
   {
   }
   //--------------------------------------------------------------------------------------------------
-  TEST(TestBasicString, testBasicString)
+  TEST(TestBasicString, testBasicFrench)
   {
-    sayHello();
+    FrenchTextGenerator g;
+    std::string s = g.getNumberName(0);
+    int a = 0;
+  }
+  //--------------------------------------------------------------------------------------------------
+  TEST(TestBasicString, testDigits)
+  {
+    FrenchTextGenerator g;
+
+    ASSERT_EQ("",       g.getDigitName(-1));
+    ASSERT_EQ("zéro",   g.getDigitName(0));
+    ASSERT_EQ("un",     g.getDigitName(1));
+    ASSERT_EQ("deux",   g.getDigitName(2));
+    ASSERT_EQ("trois",  g.getDigitName(3));
+    ASSERT_EQ("quatre", g.getDigitName(4));
+    ASSERT_EQ("cinq",   g.getDigitName(5));
+    ASSERT_EQ("six",    g.getDigitName(6));
+    ASSERT_EQ("sept",   g.getDigitName(7));
+    ASSERT_EQ("huit",   g.getDigitName(8));
+    ASSERT_EQ("neuf",   g.getDigitName(9));
+    ASSERT_EQ("",       g.getDigitName(10));
   }
   //--------------------------------------------------------------------------------------------------
 } // End namespace test
