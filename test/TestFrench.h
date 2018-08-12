@@ -29,7 +29,7 @@
 
 namespace arduino { namespace test
 {
-  class TestBasicString : public ::testing::Test
+  class TestFrench : public ::testing::Test
   {
   public:
     virtual void SetUp();

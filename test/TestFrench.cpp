@@ -22,8 +22,8 @@
  * SOFTWARE.
  *********************************************************************************/
 
-#include "TestBasicString.h"
-#include "numbertowords\numbertowords.h"
+#include "TestFrench.h"
+#include "numbertowords\FrenchTextGenerator.h"
 #include <string>
 
 using namespace NumberToWords;
@@ -33,22 +33,22 @@ namespace arduino { namespace test
   //using namespace testarduino;
 
   //--------------------------------------------------------------------------------------------------
-  void TestBasicString::SetUp()
+  void TestFrench::SetUp()
   {
   }
   //--------------------------------------------------------------------------------------------------
-  void TestBasicString::TearDown()
+  void TestFrench::TearDown()
   {
   }
   //--------------------------------------------------------------------------------------------------
-  TEST(TestBasicString, testBasicFrench)
+  TEST(TestFrench, testBasic)
   {
     FrenchTextGenerator g;
     std::string s = g.getNumberName(0);
     int a = 0;
   }
   //--------------------------------------------------------------------------------------------------
-  TEST(TestBasicString, testDigits)
+  TEST(TestFrench, testDigits)
   {
     FrenchTextGenerator g;
 

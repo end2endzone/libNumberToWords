@@ -22,8 +22,8 @@
  * SOFTWARE.
  *********************************************************************************/
 
-#ifndef FRENCHTEXTGENERATOR_H
-#define FRENCHTEXTGENERATOR_H
+#ifndef ENSLIGHTEXTGENERATOR_H
+#define ENSLIGHTEXTGENERATOR_H
 
 #ifdef NUMBERTOWORDS_BUILT_AS_SHARED
 #include "export.h"
@@ -37,20 +37,20 @@
 namespace NumberToWords
 {
 
-  class NUMBERTOWORDS_EXPORT FrenchTextGenerator : public virtual ITextGenerator
+  class NUMBERTOWORDS_EXPORT EnglishTextGenerator : public virtual ITextGenerator
   {
   public:
-    FrenchTextGenerator();
-    virtual ~FrenchTextGenerator();
+    EnglishTextGenerator();
+    virtual ~EnglishTextGenerator();
 
     virtual std::string getNumberName(const int64_t & i);
     virtual std::string getDigitName(const int64_t & i);
 
   protected:
-    virtual std::string getTeenName(const int64_t & i);
+    virtual std::string getNumberName(const int64_t & i, int iLevel);
 
   };
 
 }; //namespace NumberToWords
 
-#endif //FRENCHTEXTGENERATOR_H
+#endif //ENSLIGHTEXTGENERATOR_H

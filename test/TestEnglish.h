@@ -22,35 +22,21 @@
  * SOFTWARE.
  *********************************************************************************/
 
-#ifndef FRENCHTEXTGENERATOR_H
-#define FRENCHTEXTGENERATOR_H
+#ifndef TESTDEMO_H
+#define TESTDEMO_H
 
-#ifdef NUMBERTOWORDS_BUILT_AS_SHARED
-#include "export.h"
-#endif
+#include <gtest/gtest.h>
 
-#ifndef NUMBERTOWORDS_EXPORT
-#define NUMBERTOWORDS_EXPORT
-#endif
-
-#include "ITextGenerator.h"
-namespace NumberToWords
+namespace arduino { namespace test
 {
-
-  class NUMBERTOWORDS_EXPORT FrenchTextGenerator : public virtual ITextGenerator
+  class TestEnglish : public ::testing::Test
   {
   public:
-    FrenchTextGenerator();
-    virtual ~FrenchTextGenerator();
-
-    virtual std::string getNumberName(const int64_t & i);
-    virtual std::string getDigitName(const int64_t & i);
-
-  protected:
-    virtual std::string getTeenName(const int64_t & i);
-
+    virtual void SetUp();
+    virtual void TearDown();
   };
 
-}; //namespace NumberToWords
+} // End namespace test
+} // End namespace arduino
 
-#endif //FRENCHTEXTGENERATOR_H
+#endif //TESTDEMO_H

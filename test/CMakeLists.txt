@@ -3,8 +3,10 @@ add_executable(numbertowords_unittest
   ${RAPIDASSIST_VERSION_HEADER}
   ${RAPIDASSIST_CONFIG_HEADER}
   main.cpp
-  TestBasicString.h
-  TestBasicString.cpp
+  TestFrench.h
+  TestFrench.cpp
+  TestEnglish.h
+  TestEnglish.cpp
 )
 
 # Unit test projects requires to link with pthread if also linking with gtest

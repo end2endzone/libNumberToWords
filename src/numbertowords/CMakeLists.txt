@@ -1,6 +1,7 @@
 set(NUMBERTOWORDS_HEADER_FILES ""
   ${NUMBERTOWORDS_INCLUDE_DIR}/numbertowords/numbertowords.h
   ${NUMBERTOWORDS_INCLUDE_DIR}/numbertowords/ITextGenerator.h
+  ${NUMBERTOWORDS_INCLUDE_DIR}/numbertowords/EnglishTextGenerator.h
   ${NUMBERTOWORDS_INCLUDE_DIR}/numbertowords/FrenchTextGenerator.h
 )
 
@@ -10,6 +11,7 @@ add_library(numbertowords STATIC
   ${NUMBERTOWORDS_VERSION_HEADER}
   ${NUMBERTOWORDS_CONFIG_HEADER}
   ITextGenerator.cpp
+  EnglishTextGenerator.cpp
   FrenchTextGenerator.cpp
 )
 
