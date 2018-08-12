@@ -23,7 +23,7 @@
  *********************************************************************************/
 
 #include "TestEnglish.h"
-#include "numbertowords\EnglishTextGenerator.h"
+#include "numbertowords/EnglishTextGenerator.h"
 #include <string>
 
 using namespace NumberToWords;

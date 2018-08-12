@@ -23,7 +23,7 @@
  *********************************************************************************/
 
 #include "TestFrench.h"
-#include "numbertowords\FrenchTextGenerator.h"
+#include "numbertowords/FrenchTextGenerator.h"
 #include <string>
 
 using namespace NumberToWords;
