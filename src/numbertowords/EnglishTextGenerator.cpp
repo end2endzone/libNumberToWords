@@ -52,12 +52,18 @@ namespace NumberToWords
     if ( i == 0 )
       return getDigitName(i); 
     else if ( i < 0 )
-      return "minus " + getNumberName(-i); //do not call level fonction to allow "Minus Zero" if user 
+      return "minus " + getNumberName(-i);
     return getNumberName(i, 0);
   }
 
   std::string EnglishTextGenerator::getNumberName(const int64_t & i, int iDepth)
   {
+    //multiplicators
+    static const int64_t HUNDRED  =        100;
+    static const int64_t THOUSAND =       1000;
+    static const int64_t MILLION  =    1000000;
+    static const int64_t BILLION  = 1000000000;
+
     if ( i == 0 )
       return "";
     else if ( i <= 19 )
@@ -66,43 +72,35 @@ namespace NumberToWords
       return gTens[i / 10 - 2] + "-" + getNumberName(i % 10, iDepth+1);
     else if ( i <= 199 )
     {
-      static const int64_t multiplicator = 100;
-      return "one hundred " + getNumberName(i % multiplicator, iDepth+1);
+      return "one hundred " + getNumberName(i % HUNDRED, iDepth+1);
     }
     else if ( i <= 999 )
     {
-      static const int64_t multiplicator = 100;
-      return getNumberName(i / multiplicator, iDepth+1) + " hundred " + getNumberName(i % multiplicator, iDepth+1);
+      return getNumberName(i / HUNDRED, iDepth+1) + " hundred " + getNumberName(i % HUNDRED, iDepth+1);
     }
     else if ( i <= 1999 )
     {
-      static const int64_t multiplicator = 1000;
-      return "one thousand " + getNumberName(i % multiplicator, iDepth+1);
+      return "one thousand " + getNumberName(i % THOUSAND, iDepth+1);
     }
     else if ( i <= 999999 )
     {
-      static const int64_t multiplicator = 1000;
-      return getNumberName(i / multiplicator, iDepth+1) + " thousand " + getNumberName(i % multiplicator, iDepth+1);
+      return getNumberName(i / THOUSAND, iDepth+1) + " thousand " + getNumberName(i % THOUSAND, iDepth+1);
     }
     else if ( i <= 1999999 )
     {
-      static const int64_t multiplicator = 1000000;
-      return "one million " + getNumberName(i % multiplicator, iDepth+1);
+      return "one million " + getNumberName(i % MILLION, iDepth+1);
     }
     else if ( i <= 999999999)
     {
-      static const int64_t multiplicator = 1000000;
-      return getNumberName(i / multiplicator, iDepth+1) + " million " + getNumberName(i % multiplicator, iDepth+1);
+      return getNumberName(i / MILLION, iDepth+1) + " million " + getNumberName(i % MILLION, iDepth+1);
     }
     else if ( i <= 1999999999 )
     {
-      static const int64_t multiplicator = 1000000000;
-      return "one billion " + getNumberName(i % multiplicator, iDepth+1);
+      return "one billion " + getNumberName(i % BILLION, iDepth+1);
     }
     else
     {
-      static const int64_t multiplicator = 1000000000;
-      return getNumberName(i / multiplicator, iDepth+1) + " billion " + getNumberName(i % multiplicator, iDepth+1);
+      return getNumberName(i / BILLION, iDepth+1) + " billion " + getNumberName(i % BILLION, iDepth+1);
     }
   }
 

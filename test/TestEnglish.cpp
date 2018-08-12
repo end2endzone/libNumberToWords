@@ -46,7 +46,7 @@ namespace arduino { namespace test
     EnglishTextGenerator g;
 
     ASSERT_EQ("three"                                                      , g.getNumberName(3     ));
-    ASSERT_EQ("thirty-four"                                                , g.getNumberName(34)   );
+    ASSERT_EQ("thirty-four"                                                , g.getNumberName(34    ));
     ASSERT_EQ("three hundred forty-five"                                   , g.getNumberName(345   ));
     ASSERT_EQ("three thousand four hundred fifty-six"                      , g.getNumberName(3456  ));
     ASSERT_EQ("thirty-four thousand five hundred sixty-seven"              , g.getNumberName(34567 ));

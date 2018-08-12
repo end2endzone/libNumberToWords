@@ -47,6 +47,7 @@ namespace NumberToWords
     virtual std::string getDigitName(const int64_t & i);
 
   protected:
+    virtual std::string getNumberName(const int64_t & i, int iDepth);
     virtual std::string getTeenName(const int64_t & i);
 
   };

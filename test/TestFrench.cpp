@@ -44,8 +44,13 @@ namespace arduino { namespace test
   TEST(TestFrench, testBasic)
   {
     FrenchTextGenerator g;
-    std::string s = g.getNumberName(0);
-    int a = 0;
+
+    ASSERT_EQ("trois"                                                    , g.getNumberName(3     ));
+    ASSERT_EQ("trente-quatre"                                            , g.getNumberName(34    ));
+    ASSERT_EQ("trois cent quarante-cinq"                                 , g.getNumberName(345   ));
+    ASSERT_EQ("trois mille quatre cent cinquante-six"                    , g.getNumberName(3456  ));
+    ASSERT_EQ("trente-quatre mille cinq cent soixante-sept"              , g.getNumberName(34567 ));
+    ASSERT_EQ("trois cent quarante-cinq mille six cent soixante-dix-huit", g.getNumberName(345678));
   }
   //--------------------------------------------------------------------------------------------------
   TEST(TestFrench, testDigits)
