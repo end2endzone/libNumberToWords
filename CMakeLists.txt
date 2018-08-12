@@ -61,8 +61,8 @@ MESSAGE( STATUS "CMAKE_SYSTEM_PROCESSOR:   " ${CMAKE_SYSTEM_PROCESSOR} )
 ##############################################################################################################################################
 
 # Product version according to Semantic Versioning v2.0.0 https://semver.org/
-SET(NUMBERTOWORDS_VERSION_MAJOR 2)
-SET(NUMBERTOWORDS_VERSION_MINOR 3)
+SET(NUMBERTOWORDS_VERSION_MAJOR 0)
+SET(NUMBERTOWORDS_VERSION_MINOR 1)
 SET(NUMBERTOWORDS_VERSION_PATCH 0)
 set(NUMBERTOWORDS_VERSION ${NUMBERTOWORDS_VERSION_MAJOR}.${NUMBERTOWORDS_VERSION_MINOR}.${NUMBERTOWORDS_VERSION_PATCH})
 
