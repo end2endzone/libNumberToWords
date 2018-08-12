@@ -56,30 +56,54 @@ namespace NumberToWords
     return getNumberName(i, 0);
   }
 
-  std::string EnglishTextGenerator::getNumberName(const int64_t & i, int iLevel)
+  std::string EnglishTextGenerator::getNumberName(const int64_t & i, int iDepth)
   {
     if ( i == 0 )
       return "";
     else if ( i <= 19 )
       return gTeens[i-1];
     else if ( i <= 99 )
-      return gTens[i / 10 - 2] + "-" + getNumberName(i % 10);
+      return gTens[i / 10 - 2] + "-" + getNumberName(i % 10, iDepth+1);
     else if ( i <= 199 )
-      return "one hundred " + getNumberName(i % 100);
+    {
+      static const int64_t multiplicator = 100;
+      return "one hundred " + getNumberName(i % multiplicator, iDepth+1);
+    }
     else if ( i <= 999 )
-      return getNumberName(i / 100) + " hundred " + getNumberName(i % 100);
+    {
+      static const int64_t multiplicator = 100;
+      return getNumberName(i / multiplicator, iDepth+1) + " hundred " + getNumberName(i % multiplicator, iDepth+1);
+    }
     else if ( i <= 1999 )
-      return "one thousand " + getNumberName(i % 1000);
+    {
+      static const int64_t multiplicator = 1000;
+      return "one thousand " + getNumberName(i % multiplicator, iDepth+1);
+    }
     else if ( i <= 999999 )
-      return getNumberName(i / 1000) + " thousand " + getNumberName(i % 1000);
+    {
+      static const int64_t multiplicator = 1000;
+      return getNumberName(i / multiplicator, iDepth+1) + " thousand " + getNumberName(i % multiplicator, iDepth+1);
+    }
     else if ( i <= 1999999 )
-      return "one million " + getNumberName(i % 1000000);
+    {
+      static const int64_t multiplicator = 1000000;
+      return "one million " + getNumberName(i % multiplicator, iDepth+1);
+    }
     else if ( i <= 999999999)
-      return getNumberName(i / 1000000) + " million " + getNumberName(i % 1000000);
+    {
+      static const int64_t multiplicator = 1000000;
+      return getNumberName(i / multiplicator, iDepth+1) + " million " + getNumberName(i % multiplicator, iDepth+1);
+    }
     else if ( i <= 1999999999 )
-      return "one billion " + getNumberName(i % 1000000000);
-    else 
-      return getNumberName(i / 1000000000) + " billion " + getNumberName(i % 1000000000);
+    {
+      static const int64_t multiplicator = 1000000000;
+      return "one billion " + getNumberName(i % multiplicator, iDepth+1);
+    }
+    else
+    {
+      static const int64_t multiplicator = 1000000000;
+      return getNumberName(i / multiplicator, iDepth+1) + " billion " + getNumberName(i % multiplicator, iDepth+1);
+    }
   }
 
   std::string EnglishTextGenerator::getDigitName(const int64_t & i)
