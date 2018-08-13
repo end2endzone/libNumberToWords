@@ -11,4 +11,4 @@ echo ===========================================================================
 echo Extracting French archive...
 echo ============================================================================
 cd $TRAVIS_BUILD_DIR/test/french
-unzip words.zip -d .
+7z x words.zip
