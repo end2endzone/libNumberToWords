@@ -30,7 +30,7 @@ namespace NumberToWords
     "un", "deux", "trois", "quatre", "cinq",
     "six", "sept", "huit", "neuf", "dix",
     "onze", "douze", "treize", "quatorze",
-    "quinze", "seize", "dix sept", "dix huit", "dix neuf"
+    "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf"
   };
   static const std::string gTens[] = {
     "vingt", "trente",
@@ -68,6 +68,11 @@ namespace NumberToWords
       return "";
     else if ( i <= 19 )
       return gTeens[i-1];
+    else if ( i < 20 )
+    {
+      std::string start = gTens[i / 10 - 2];
+      return  + "-" + getNumberName(i % 10, iDepth+1);
+    }
     else if ( i <= 99 )
       return gTens[i / 10 - 2] + "-" + getNumberName(i % 10, iDepth+1);
     else if ( i <= 199 )

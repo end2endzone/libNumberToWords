@@ -24,6 +24,7 @@
 
 #include "TestFrench.h"
 #include "numbertowords/FrenchTextGenerator.h"
+#include "rapidassist\filesystem.h"
 #include <string>
 
 using namespace NumberToWords;
@@ -69,6 +70,82 @@ namespace arduino { namespace test
     ASSERT_EQ("huit",   g.getDigitName(8));
     ASSERT_EQ("neuf",   g.getDigitName(9));
     ASSERT_EQ("",       g.getDigitName(10));
+  }
+  //--------------------------------------------------------------------------------------------------
+  std::string getFrenchTestFilename(int i)
+  {
+    char buffer[1024];
+    sprintf(buffer, "D:\\Projects\\programmation\\cpp\\libNumberToWords\\test\\french\\Nombres_%06d_to_%06d.txt", i, i+9999);
+    return buffer;
+  }
+  std::vector<std::string> loadFile(const char * iFilePath)
+  {
+    std::vector<std::string> lines;
+    if ( !ra::filesystem::fileExists(iFilePath) )
+      return lines;
+    
+    FILE * f = fopen(iFilePath, "r");
+    if (!f)
+      return lines;
+
+    static const int BUFFER_SIZE = 10240;
+    char buffer[BUFFER_SIZE];
+    while( fgets(buffer, BUFFER_SIZE, f) != NULL )
+    {
+      ra::strings::removeEOL(buffer);
+
+      lines.push_back(buffer);
+    }
+
+    return lines;
+  }
+  TEST(TestFrench, testFull)
+  {
+    FrenchTextGenerator g;
+
+    bool show_progress = true;
+
+    for(int i=0; i<990000; i+=10000)
+    {
+      std::string filename = getFrenchTestFilename(i);
+      
+      //progress
+      if (show_progress)
+      {
+        printf("Processing file: %s\n", filename.c_str());
+      }
+
+      //load file
+      ASSERT_TRUE( ra::filesystem::fileExists(filename.c_str()) ) << "File not found: " << filename.c_str();
+      std::vector<std::string> lines = loadFile(filename.c_str());
+      ASSERT_TRUE( lines.size() != 0 );
+      
+      //for each lines in the file
+      int numLines = (int)lines.size();
+      for(int j=0; j<numLines; j++)
+      {
+        //compute expected and actual values
+        int64_t value = i+j;
+        std::string expectedName = lines[j];
+        std::string actualName = g.getNumberName(value);
+
+        //assert
+        ASSERT_EQ(expectedName, actualName) << "Failed converting " << ra::strings::toString(value).c_str() << ". Expected '" << expectedName.c_str() << "' but received '" << actualName.c_str() << "'.";
+
+        //progress every 200 lines.
+        if (show_progress && j%200 == 0)
+        {
+          double percent = (j*100)/numLines;
+          printf("%d%%... ", percent);
+        }
+      }
+
+      //progress: end of % progress
+      if (show_progress)
+      {
+        printf("\n");
+      }
+    }
   }
   //--------------------------------------------------------------------------------------------------
 } // End namespace test
