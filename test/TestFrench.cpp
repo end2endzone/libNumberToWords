@@ -24,7 +24,7 @@
 
 #include "TestFrench.h"
 #include "numbertowords/FrenchTextGenerator.h"
-#include "rapidassist\filesystem.h"
+#include "rapidassist/filesystem.h"
 #include <string>
 
 using namespace NumberToWords;
