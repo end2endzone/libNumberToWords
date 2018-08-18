@@ -106,7 +106,11 @@ namespace arduino { namespace test
   {
     char buffer[1024];
     sprintf(buffer, "test_files\\french_%06d_to_%06d.txt", i, i+9999);
-    return buffer;
+
+    std::string path = buffer;
+    ra::filesystem::normalizePath(path);
+
+    return path;
   }
   std::vector<std::string> loadFile(const char * iFilePath)
   {
