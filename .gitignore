@@ -1,4 +1,4 @@
 /build
 /install
 /third_parties
-/test/french/french_*.txt
+/test/test_files/french_*.txt

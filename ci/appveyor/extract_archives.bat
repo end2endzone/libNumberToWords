@@ -9,7 +9,7 @@ if "%APPVEYOR_BUILD_FOLDER%"=="" (
 echo ============================================================================
 echo Extracting French archive...
 echo ============================================================================
-cd /d %APPVEYOR_BUILD_FOLDER%\test\french
+cd /d %APPVEYOR_BUILD_FOLDER%\test\test_files
 "C:\Program Files\7-Zip\7z" x french.zip
 if %errorlevel% neq 0 exit /b %errorlevel%
 
