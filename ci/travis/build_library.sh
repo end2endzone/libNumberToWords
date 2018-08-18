@@ -18,7 +18,7 @@ echo ===========================================================================
 cd $TRAVIS_BUILD_DIR
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_LOCATION -DNUMBERTOWORDS_BUILD_TEST=ON -DNUMBERTOWORDS_BUILD_SAMPLES=ON ..
+cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_LOCATION -DNUMBERTOWORDS_BUILD_TEST=ON ..
 
 echo ============================================================================
 echo Compiling...
