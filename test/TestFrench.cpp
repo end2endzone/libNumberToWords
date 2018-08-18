@@ -75,7 +75,7 @@ namespace arduino { namespace test
   std::string getFrenchTestFilename(int i)
   {
     char buffer[1024];
-    sprintf(buffer, "D:\\Projects\\programmation\\cpp\\libNumberToWords\\test\\french\\Nombres_%06d_to_%06d.txt", i, i+9999);
+    sprintf(buffer, "test_files\\french_%06d_to_%06d.txt", i, i+9999);
     return buffer;
   }
   std::vector<std::string> loadFile(const char * iFilePath)

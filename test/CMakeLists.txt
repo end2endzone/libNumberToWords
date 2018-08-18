@@ -28,6 +28,9 @@ add_custom_command( TARGET numbertowords_unittest POST_BUILD
                     ${CMAKE_CURRENT_SOURCE_DIR}/test_files $<TARGET_FILE_DIR:numbertowords_unittest>/test_files
                     COMMENT "Copying test_files database.")
 
+# Copy test files to build dir for local execution (from within the IDE)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/test_files DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 install(TARGETS numbertowords_unittest
         EXPORT numbertowords-targets
         ARCHIVE DESTINATION ${NUMBERTOWORDS_INSTALL_LIB_DIR}
