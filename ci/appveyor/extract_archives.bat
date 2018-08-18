@@ -10,7 +10,14 @@ echo ===========================================================================
 echo Extracting French archive...
 echo ============================================================================
 cd /d %APPVEYOR_BUILD_FOLDER%\test\test_files
-"C:\Program Files\7-Zip\7z" x french.zip
+"C:\Program Files\7-Zip\7z" x -y french.zip
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+echo ============================================================================
+echo Extracting English archive...
+echo ============================================================================
+cd /d %APPVEYOR_BUILD_FOLDER%\test\test_files
+"C:\Program Files\7-Zip\7z" x -y english.zip
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 ::Return to launch folder

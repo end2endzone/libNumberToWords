@@ -8,9 +8,19 @@ if [ "$TRAVIS_BUILD_DIR" = "" ]; then
 fi
 
 echo ============================================================================
+echo Installing 7-zip...
+echo ============================================================================
+sudo apt-get update
+sudo apt-get install p7zip-full p7zip p7zip-rar
+
+echo ============================================================================
 echo Extracting French archive...
 echo ============================================================================
 cd $TRAVIS_BUILD_DIR/test/test_files
-sudo apt-get update
-sudo apt-get install p7zip-full p7zip p7zip-rar
-7z x french.zip
+7z x -y french.zip
+
+echo ============================================================================
+echo Extracting English archive...
+echo ============================================================================
+cd $TRAVIS_BUILD_DIR/test/test_files
+7z x -y english.zip
