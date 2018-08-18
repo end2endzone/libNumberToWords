@@ -54,6 +54,36 @@ namespace arduino { namespace test
     ASSERT_EQ("trois cent quarante-cinq mille six cent soixante-dix-huit", g.getNumberName(345678));
   }
   //--------------------------------------------------------------------------------------------------
+  TEST(TestFrench, testSpecial)
+  {
+    FrenchTextGenerator g;
+
+    ASSERT_EQ("soixante-neuf",      g.getNumberName(69));
+    ASSERT_EQ("soixante-dix",       g.getNumberName(70));
+    ASSERT_EQ("soixante et onze",   g.getNumberName(71));
+    ASSERT_EQ("soixante-douze",     g.getNumberName(72));
+    ASSERT_EQ("soixante-treize",    g.getNumberName(73));
+    ASSERT_EQ("soixante-quatorze",  g.getNumberName(74));
+    ASSERT_EQ("soixante-quinze",    g.getNumberName(75));
+    ASSERT_EQ("soixante-seize",     g.getNumberName(76));
+    ASSERT_EQ("soixante-dix-sept",  g.getNumberName(77));
+    ASSERT_EQ("soixante-dix-huit",  g.getNumberName(78));
+    ASSERT_EQ("soixante-dix-neuf",  g.getNumberName(79));
+  }
+  //--------------------------------------------------------------------------------------------------
+  TEST(TestFrench, testDash)
+  {
+    FrenchTextGenerator g;
+
+    ASSERT_EQ("trente-cinq", g.getNumberName(35));
+    ASSERT_EQ("cent trente-cinq", g.getNumberName(135));
+    ASSERT_EQ("quatre-vingt-trois", g.getNumberName(83));
+    ASSERT_EQ("deux mille huit cent vingt-quatre", g.getNumberName(2824));
+    ASSERT_EQ("six cent un", g.getNumberName(601));
+    ASSERT_EQ("cent trente et un", g.getNumberName(131));
+    ASSERT_EQ("soixante et onze", g.getNumberName(71));
+  }
+  //--------------------------------------------------------------------------------------------------
   TEST(TestFrench, testDigits)
   {
     FrenchTextGenerator g;
@@ -135,7 +165,7 @@ namespace arduino { namespace test
         //progress every 200 lines.
         if (show_progress && j%200 == 0)
         {
-          double percent = (j*100)/numLines;
+          int percent = (j*100)/numLines;
           printf("%d%%... ", percent);
         }
       }

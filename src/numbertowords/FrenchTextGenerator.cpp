@@ -35,7 +35,7 @@ namespace NumberToWords
   static const std::string gTens[] = {
     "vingt", "trente",
     "quarante", "cinquante",
-    "soixante", "soixante-dix", 
+    "soixante", "soixante" /*-dix*/, 
     "quatre-vingt", "quatre-vingt-dix"
   };
 
@@ -68,13 +68,27 @@ namespace NumberToWords
       return "";
     else if ( i <= 19 )
       return gTeens[i-1];
-    else if ( i < 20 )
-    {
-      std::string start = gTens[i / 10 - 2];
-      return  + "-" + getNumberName(i % 10, iDepth+1);
-    }
     else if ( i <= 99 )
-      return gTens[i / 10 - 2] + "-" + getNumberName(i % 10, iDepth+1);
+    {
+      int64_t left = i / 10 - 2;
+      int64_t right = i % 10;
+      std::string left_string = gTens[left];
+      std::string right_string = getNumberName(right, iDepth+1);
+      if (i >= 70 && i <= 79) //handle 70-79 range
+      {
+        right_string = getNumberName(i-60, iDepth+1);
+      }
+      if (right_string.empty())
+        return left_string;
+      const char * conjonction = "";
+      if ( i != 81 && i != 91 && (i%10)==1 ) //nombre se terminant par 1, sauf 81 et 91
+        conjonction = " et "; //Pour les nombres se terminant en 1, on ajoute la conjonction `et`
+      else
+        conjonction = "-"; //Prennent un trait d'union tous les nombres composés inférieurs à 100 ne se terminant pas en 1 sauf 81 et 91.
+      left_string.append(conjonction);
+      left_string.append(right_string);
+      return left_string;
+    }
     else if ( i <= 199 )
     {
       return "cent " + getNumberName(i % HUNDRED, iDepth+1);
