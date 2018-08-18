@@ -46,17 +46,18 @@ Private Sub PrintNumbers(ByVal loopStart As Long, ByVal loopEnd As Long)
     UpdateAllFields
     
     'Define output filename
-    Dim filename
-    filename = "Nombres_" & Format(loopStart, "000000") & "_to_" & Format(loopEnd, "000000") & ".txt"
+    Dim filePath
+    filePath = "french_" & Format(loopStart, "000000") & "_to_" & Format(loopEnd, "000000") & ".txt"
     
     'Save document as *.txt file
     ChangeFileOpenDirectory "C:\Temp\"
-    ActiveDocument.SaveAs2 filename:=filename, FileFormat:=wdFormatText, _
+    
+    ActiveDocument.SaveAs filename:=filePath, FileFormat:=wdFormatText, _
         LockComments:=False, Password:="", AddToRecentFiles:=True, WritePassword _
         :="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts:=False, _
         SaveNativePictureFormat:=False, SaveFormsData:=False, SaveAsAOCELetter:= _
         False, Encoding:=1252, InsertLineBreaks:=False, AllowSubstitutions:=False _
-        , LineEnding:=wdCRLF, CompatibilityMode:=0
+        , LineEnding:=wdCRLF
         
     'Close document
     ActiveDocument.Close
@@ -100,11 +101,15 @@ Attribute NewDocument.VB_ProcData.VB_Invoke_Func = "Project.NewMacros.a"
         .LineUnitAfter = 0
         .MirrorIndents = False
         .TextboxTightWrap = wdTightNone
-        .CollapsedByDefault = False
+        '.CollapsedByDefault = False
     End With
     
     'Set FRENCH language
     Selection.LanguageID = wdFrench
+    
+    'or set ENGLISH language
+    'Selection.LanguageID = wdEnglishUS
+    
     Selection.NoProofing = False
     Application.CheckLanguage = True
 End Sub
