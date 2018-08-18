@@ -22,6 +22,12 @@ target_include_directories(numbertowords_unittest PRIVATE ${GTEST_INCLUDE_DIR})
 add_dependencies(numbertowords_unittest numbertowords)
 target_link_libraries(numbertowords_unittest PUBLIC rapidassist numbertowords ${PTHREAD_LIBRARIES} ${GTEST_LIBRARIES} )
 
+# Copy test files database to target dir
+add_custom_command( TARGET numbertowords_unittest POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    ${CMAKE_CURRENT_SOURCE_DIR}/french $<TARGET_FILE_DIR:numbertowords_unittest>/db
+                    COMMENT "Copying french database.")
+
 install(TARGETS numbertowords_unittest
         EXPORT numbertowords-targets
         ARCHIVE DESTINATION ${NUMBERTOWORDS_INSTALL_LIB_DIR}
