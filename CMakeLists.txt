@@ -199,7 +199,7 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION ${NUMBERTOWORDS_INSTA
 install(FILES ${NUMBERTOWORDS_EXPORT_HEADER}
               ${NUMBERTOWORDS_VERSION_HEADER}
               ${NUMBERTOWORDS_CONFIG_HEADER}
-              DESTINATION ${NUMBERTOWORDS_INSTALL_INCLUDE_DIR})
+              DESTINATION ${NUMBERTOWORDS_INSTALL_INCLUDE_DIR}/numbertowords)
 install(EXPORT numbertowords-targets DESTINATION ${NUMBERTOWORDS_INSTALL_CMAKE_DIR})
 
 ##############################################################################################################################################
