@@ -74,7 +74,12 @@ namespace NumberToWords
       int64_t right = i % 10;
       std::string left_string = gTens[left];
       std::string right_string = getNumberName(right, iDepth+1);
-      if (i >= 70 && i <= 79) //handle 70-79 range
+      if (i == 80) //pluriels
+      {
+        left_string.append("s");
+        return left_string;
+      }
+      else if (i >= 70 && i <= 79) //handle 70-79 range
       {
         right_string = getNumberName(i-60, iDepth+1);
       }

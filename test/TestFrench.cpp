@@ -54,7 +54,7 @@ namespace arduino { namespace test
     ASSERT_EQ("trois cent quarante-cinq mille six cent soixante-dix-huit", g.getNumberName(345678));
   }
   //--------------------------------------------------------------------------------------------------
-  TEST(TestFrench, testSpecial)
+  TEST(TestFrench, test70s)
   {
     FrenchTextGenerator g;
 
@@ -69,6 +69,18 @@ namespace arduino { namespace test
     ASSERT_EQ("soixante-dix-sept",  g.getNumberName(77));
     ASSERT_EQ("soixante-dix-huit",  g.getNumberName(78));
     ASSERT_EQ("soixante-dix-neuf",  g.getNumberName(79));
+  }
+  //--------------------------------------------------------------------------------------------------
+  TEST(TestFrench, testAccords)
+  {
+    FrenchTextGenerator g;
+
+    ASSERT_EQ("quatre-vingts"           , g.getNumberName(80));
+    ASSERT_EQ("quatre-vingt-trois"      , g.getNumberName(83));
+    ASSERT_EQ("quatre cents"            , g.getNumberName(400));
+    ASSERT_EQ("quatre cent vingt et un" , g.getNumberName(421));
+    ASSERT_EQ("quatre cents millions"   , g.getNumberName(400000000));
+    ASSERT_EQ("deux cent mille"         , g.getNumberName(200000));
   }
   //--------------------------------------------------------------------------------------------------
   TEST(TestFrench, testDash)
