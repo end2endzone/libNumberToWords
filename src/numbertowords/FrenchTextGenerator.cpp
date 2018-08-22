@@ -74,7 +74,7 @@ namespace NumberToWords
       int64_t right = i % 10;
       std::string left_string = gTens[left];
       std::string right_string = getNumberName(right, iDepth+1);
-      if (i == 80) //pluriels
+      if (i == 80) //20 et 100 s'accordent quand ils sont multipliés par un nombre sans être suivis par un autre nombre.
       {
         left_string.append("s");
         return left_string;
@@ -100,7 +100,15 @@ namespace NumberToWords
     }
     else if ( i <= 999 )
     {
-      return getNumberName(i / HUNDRED, iDepth+1) + " cent " + getNumberName(i % HUNDRED, iDepth+1);
+      int64_t left = i / HUNDRED;
+      int64_t right = i % HUNDRED;
+      std::string left_string = getNumberName(left, iDepth+1);
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      if (right == 0) //20 et 100 s'accordent quand ils sont multipliés par un nombre sans être suivis par un autre nombre.
+      {
+        return left_string + " cents";
+      }
+      return left_string + " cent " + right_string;
     }
     else if ( i <= 1999 )
     {
@@ -116,7 +124,11 @@ namespace NumberToWords
     }
     else if ( i <= 999999999)
     {
-      return getNumberName(i / MILLION, iDepth+1) + " million " + getNumberName(i % MILLION, iDepth+1);
+      int64_t left = i / MILLION;
+      int64_t right = i % MILLION;
+      std::string left_string = getNumberName(left, iDepth+1);
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      return left_string + " millions " + right_string;
     }
     else if ( i <= 1999999999 )
     {
@@ -124,7 +136,7 @@ namespace NumberToWords
     }
     else
     {
-      return getNumberName(i / BILLION, iDepth+1) + " milliard " + getNumberName(i % BILLION, iDepth+1);
+      return getNumberName(i / BILLION, iDepth+1) + " milliards " + getNumberName(i % BILLION, iDepth+1);
     }
   }
 
