@@ -23,6 +23,7 @@
  *********************************************************************************/
 
 #include "numbertowords/FrenchTextGenerator.h"
+#include "rapidassist/strings.h"
 
 namespace NumberToWords
 {
@@ -116,7 +117,21 @@ namespace NumberToWords
     }
     else if ( i <= 999999 )
     {
-      return getNumberName(i / THOUSAND, iDepth+1) + " mille " + getNumberName(i % THOUSAND, iDepth+1);
+      int64_t left = i / THOUSAND;
+      int64_t right = i % THOUSAND;
+      std::string left_string = getNumberName(left, iDepth+1);
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      
+      //remove any plurial form since we are adding "mille"
+      ra::strings::strReplace(left_string, "cents", "cent");
+
+      //continue with adding the right side
+      left_string.append(" mille"); // Mille est toujours invariable
+      if (!right_string.empty())
+      {
+        return left_string + " " + right_string;
+      }
+      return left_string;
     }
     else if ( i <= 1999999 )
     {
@@ -128,7 +143,13 @@ namespace NumberToWords
       int64_t right = i % MILLION;
       std::string left_string = getNumberName(left, iDepth+1);
       std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
-      return left_string + " millions " + right_string;
+      
+      left_string.append(" millions"); // Millier, million et milliard sont des noms et non des adjectifs. Ils ne font pas vraiment partie du nombre et laissent place à l'accord
+      if (!right_string.empty())
+      {
+        return left_string + " " + right_string;
+      }
+      return left_string;
     }
     else if ( i <= 1999999999 )
     {
@@ -136,7 +157,17 @@ namespace NumberToWords
     }
     else
     {
-      return getNumberName(i / BILLION, iDepth+1) + " milliards " + getNumberName(i % BILLION, iDepth+1);
+      int64_t left = i / BILLION;
+      int64_t right = i % BILLION;
+      std::string left_string = getNumberName(left, iDepth+1);
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      
+      left_string.append(" milliards"); // Millier, million et milliard sont des noms et non des adjectifs. Ils ne font pas vraiment partie du nombre et laissent place à l'accord
+      if (!right_string.empty())
+      {
+        return left_string + " " + right_string;
+      }
+      return left_string;
     }
   }
 
