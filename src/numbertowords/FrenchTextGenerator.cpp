@@ -108,7 +108,15 @@ namespace NumberToWords
     }
     else if ( i <= 199 )
     {
-      return "cent " + getNumberName(i % HUNDRED, iDepth+1);
+      int64_t left = i / HUNDRED;
+      int64_t right = i % HUNDRED;
+      std::string left_string = "cent";
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      if (!right_string.empty())
+      {
+        return left_string + " " + right_string;
+      }
+      return left_string;
     }
     else if ( i <= 999 )
     {
@@ -124,7 +132,15 @@ namespace NumberToWords
     }
     else if ( i <= 1999 )
     {
-      return "mille " + getNumberName(i % THOUSAND, iDepth+1);
+      int64_t left = i / THOUSAND;
+      int64_t right = i % THOUSAND;
+      std::string left_string = "mille";
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      if (!right_string.empty())
+      {
+        return left_string + " " + right_string;
+      }
+      return left_string;
     }
     else if ( i <= 999999 )
     {
@@ -146,7 +162,15 @@ namespace NumberToWords
     }
     else if ( i <= 1999999 )
     {
-      return "un million " + getNumberName(i % MILLION, iDepth+1);
+      int64_t left = i / MILLION;
+      int64_t right = i % MILLION;
+      std::string left_string = "un million";
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      if (!right_string.empty())
+      {
+        return left_string + " " + right_string;
+      }
+      return left_string;
     }
     else if ( i <= 999999999)
     {
@@ -164,7 +188,15 @@ namespace NumberToWords
     }
     else if ( i <= 1999999999 )
     {
-      return "un milliard " + getNumberName(i % BILLION, iDepth+1);
+      int64_t left = i / BILLION;
+      int64_t right = i % BILLION;
+      std::string left_string = "un milliard";
+      std::string right_string = (right == 0 ? "" : getNumberName(right, iDepth+1));
+      if (!right_string.empty())
+      {
+        return left_string + " " + right_string;
+      }
+      return left_string;
     }
     else
     {

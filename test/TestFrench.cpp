@@ -53,6 +53,15 @@ namespace arduino { namespace test
     ASSERT_EQ("trente-quatre mille cinq cent soixante-sept"              , g.getNumberName(34567 ));
     ASSERT_EQ("trois cent quarante-cinq mille six cent soixante-dix-huit", g.getNumberName(345678));
   }
+  TEST(TestFrench, testExactNumbers)
+  {
+    FrenchTextGenerator g;
+
+    ASSERT_EQ("cent"          , g.getNumberName(100));
+    ASSERT_EQ("mille"         , g.getNumberName(1000));
+    ASSERT_EQ("un million"    , g.getNumberName(1000000));
+    ASSERT_EQ("un milliard"   , g.getNumberName(1000000000));
+  }
   //--------------------------------------------------------------------------------------------------
   TEST(TestFrench, test70s)
   {
