@@ -84,6 +84,17 @@ namespace NumberToWords
       {
         right_string = getNumberName(i-60, iDepth+1);
       }
+      else if (i >= 90 && i <= 99) //handle 90-99 range
+      {
+        if (i == 90)
+          return left_string;
+        
+        //from 90s to 80s
+        left--;
+        left_string = gTens[left];
+
+        right_string = getNumberName(i-80, iDepth+1);
+      }
       if (right_string.empty())
         return left_string;
       const char * conjonction = "";
