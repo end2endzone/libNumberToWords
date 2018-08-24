@@ -190,10 +190,19 @@ namespace arduino { namespace test
         ASSERT_EQ(expectedName, actualName) << "Failed converting " << ra::strings::toString(value).c_str() << ". Expected '" << expectedName.c_str() << "' but received '" << actualName.c_str() << "'.";
 
         //progress every 200 lines.
-        if (show_progress && j%200 == 0)
+        if (show_progress && j%200 == 0 || j == (numLines-1))
         {
-          int percent = (j*100)/numLines;
-          printf("%d%%... ", percent);
+          if (j != 0)
+          {
+            int percent = (j*100)/(numLines-1);
+            if (percent == 100)
+              printf("%02d%%", percent);
+            else
+              printf("%02d%% .. ", percent);
+
+            if (j != 0 && j%1000 == 0)
+              printf("\n");
+          }
         }
       }
 
